@@ -1,10 +1,11 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseUrl = "http://localhost:7000/api/v1/";
+// const baseUrl = "http://localhost:7000/api/v1/";
+const baseURL = "https://moonflix-api.vercel.app/api/v1/";
 
 const privateClient = axios.create({
-  baseUrl,
+    baseURL,
   paramsSerializer: {
     encode: (params) => queryString.stringify(params),
   },
