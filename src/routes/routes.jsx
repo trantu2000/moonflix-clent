@@ -1,28 +1,39 @@
-import ProtectedPage from "../components/common/ProtectedPage";
-import FavoriteList from "../pages/FavoriteList";
 import HomePage from "../pages/HomePage";
+import PersonDetail from "../pages/PersonDetail";
+import FavoriteList from "../pages/FavoriteList";
 import MediaDetail from "../pages/MediaDetail";
 import MediaList from "../pages/MediaList";
 import MediaSearch from "../pages/MediaSearch";
 import PasswordUpdate from "../pages/PasswordUpdate";
-import PersonDetail from "../pages/PersonDetail";
 import ReviewList from "../pages/ReviewList";
+import ProtectedPage from "../components/common/ProtectedPage";
+
+export const routesGen = {
+  home: "/",
+  mediaList: (type) => `/${type}`,
+  mediaDetail: (type, id) => `/${type}/${id}`,
+  mediaSearch: "/search",
+  person: (id) => `/person/${id}`,
+  favoriteList: "/favorites",
+  reviewList: "/reviews",
+  passwordUpdate: "password-update"
+};
 
 const routes = [
   {
     index: true,
     element: <HomePage />,
-    state: "home",
+    state: "home"
   },
   {
     path: "/person/:personId",
     element: <PersonDetail />,
-    state: "person.detail",
+    state: "person.detail"
   },
   {
     path: "/search",
     element: <MediaSearch />,
-    state: "search",
+    state: "search"
   },
   {
     path: "/password-update",
@@ -31,7 +42,7 @@ const routes = [
         <PasswordUpdate />
       </ProtectedPage>
     ),
-    state: "password.update",
+    state: "password.update"
   },
   {
     path: "/favorites",
@@ -40,7 +51,7 @@ const routes = [
         <FavoriteList />
       </ProtectedPage>
     ),
-    state: "favorites",
+    state: "favorites"
   },
   {
     path: "/reviews",
@@ -49,16 +60,16 @@ const routes = [
         <ReviewList />
       </ProtectedPage>
     ),
-    state: "reviews",
+    state: "reviews"
   },
   {
     path: "/:mediaType",
-    element: <MediaList />,
+    element: <MediaList />
   },
   {
     path: "/:mediaType/:mediaId",
-    element: <MediaDetail />,
-  },
+    element: <MediaDetail />
+  }
 ];
 
 export default routes;

@@ -1,10 +1,11 @@
 import React from 'react'
+import HeroSlide from '../components/common/HeroSlide'
 
 const HomePage = () => {
   return (
-    <div>
-      HomePage
-    </div>
+    <>
+    <HeroSlide/>
+    </>
   )
 }
 

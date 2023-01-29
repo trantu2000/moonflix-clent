@@ -4,6 +4,7 @@ import themeConfigs from "./configs/theme.configs";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import routes from "./routes/routes";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import "react-toastify/dist/ReactToastify.css";
 import MainLayout from "./components/layout/MainLayout";
@@ -24,7 +25,10 @@ const App = () => {
         pauseOnHover
         theme={themeMode}
       />
+      {/* mui reset css */}
+      <CssBaseline />
 
+      {/* app routes */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout />}>
@@ -62,6 +66,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      {/* app routes */}
     </ThemeProvider>
   );
 };
