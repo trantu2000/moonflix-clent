@@ -23,11 +23,13 @@ import { setAuthModalOpen } from "../../redux/features/authModalSlice";
 
 const ScrollAppBar = ({ children, window }) => {
   const { themeMode } = useSelector((state) => state.themeMode);
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 50,
     target: window ? window() : undefined,
   });
+
   return cloneElement(children, {
     sx: {
       color: trigger
@@ -45,19 +47,21 @@ const ScrollAppBar = ({ children, window }) => {
 };
 
 const Topbar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user } = useSelector((state) => state.user);
   const { appState } = useSelector((state) => state.appState);
-  const dispatch = useDispatch();
   const { themeMode } = useSelector((state) => state.themeMode);
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-  // const { user } = useSelector((state) => state.user);
-  const { user } = useState(false)
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
 
   const onSwithTheme = () => {
     const theme =
       themeMode === themeModes.dark ? themeModes.light : themeModes.dark;
     dispatch(setThemeMode(theme));
   };
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
     <>
@@ -75,10 +79,12 @@ const Topbar = () => {
               >
                 <MenuIcon />
               </IconButton>
+
               <Box sx={{ display: { xs: "inline-block", md: "none" } }}>
                 <Logo />
               </Box>
             </Stack>
+
             {/* main menu */}
             <Box
               flexGrow={1}
@@ -110,14 +116,17 @@ const Topbar = () => {
               </IconButton>
             </Box>
             {/* main menu */}
+
             {/* user menu */}
             <Stack spacing={3} direction="row" alignItems="center">
-              {!user && <Button
-                variant="contained"
-                onClick={() => dispatch(setAuthModalOpen(true))}
-              >
-                sign in
-              </Button>}
+              {!user && (
+                <Button
+                  variant="contained"
+                  onClick={() => dispatch(setAuthModalOpen(true))}
+                >
+                  sign in
+                </Button>
+              )}
             </Stack>
             {user && <UserMenu />}
             {/* user menu */}
