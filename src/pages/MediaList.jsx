@@ -36,9 +36,9 @@ const MediaList = () => {
       if (currPage === 1) dispatch(setGlobalLoading(true));
       setMediaLoading(true);
 
-      const { response, err } = await mediaApi({
+      const { response, err } = await mediaApi.getList({
         mediaType,
-        mediaCategories: mediaCategories[currCategory],
+        mediaCategory: mediaCategories[currCategory],
         page: currPage,
       });
       setMediaLoading(false);
