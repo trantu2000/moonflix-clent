@@ -90,6 +90,34 @@ const MediaItem = ({ media, mediaType }) => {
                 "& .MuiButton-startIcon": { marginRight: "-4px" },
               }}
             />
+            <Box
+              className="media-info"
+              sx={{
+                transition: "all 0.3s ease",
+                opacity: { xs: 1, md: 0 },
+                position: "absolute",
+                bottom: { xs: 0, md: "-20px" },
+                width: "100%",
+                height: "max-content",
+                boxSizing: "border-box",
+                padding: { xs: "10px", md: "2rem 1rem" },
+              }}
+            >
+              <Stack spacing={{ xs: 1, md: 2 }}>
+                {rate && <CircularRate value={rate} />}
+                <Typography>{releaseDate}</Typography>
+                <Typography
+                  variant="body1"
+                  fontWeight="700"
+                  sx={{
+                    fontSize: "1rem",
+                    ...uiConfigs.style.typoLines(1, "left"),
+                  }}
+                >
+                  {title}
+                </Typography>
+              </Stack>
+            </Box>
           </>
         )}
         {/* movie or tv item */}
