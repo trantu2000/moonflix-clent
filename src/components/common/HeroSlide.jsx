@@ -27,7 +27,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
   const dispatch = useDispatch();
   const [movies, setMovies] = useState([]);
   const [genres, setGenres] = useState([]);
-  console.log(movies);
+  // console.log(movies);
 
   useEffect(() => {
     const getMedias = async () => {

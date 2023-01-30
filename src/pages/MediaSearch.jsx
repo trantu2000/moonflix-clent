@@ -1,27 +1,109 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, Stack, TextField, Toolbar } from "@mui/material";
-import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Stack,
+  TextField,
+  Toolbar,
+  selectClasses,
+} from "@mui/material";
+import React, { useCallback, useEffect, useState } from "react";
+import uiConfigs from "../configs/ui.configs";
+import MediaGrid from "../components/common/MediaGrid";
+import mediaApi from "../api/modules/media.api";
+import { toast } from "react-toastify";
+
 const mediaTypes = ["movie", "tv", "people"];
+let timer;
+const timeout = 500;
 
 const MediaSearch = () => {
   const [medias, setMedias] = useState([]);
+  const [mediaType, setMediaType] = useState(mediaTypes[0]);
+  const [query, setQuery] = useState("");
+  const [onSearch, setOnSearch] = useState(false);
+  const [page, setPage] = useState(1);
+
+  console.log(medias);
+
+  const search = useCallback(async () => {
+    setOnSearch(true);
+    const { response, err } = await mediaApi.search({
+      mediaType,
+      query,
+      page,
+    });
+    setOnSearch(false);
+    if (err) toast.error(err.message);
+    if (response) {
+      if (page > 1) setMedias((m) => [...m, ...response.results]);
+      else setMedias([...response.results]);
+    }
+  }, [mediaType, query, page]);
+
+  useEffect(() => {
+    if (query.trim().length === 0) {
+      setMedias([]);
+      setPage(1);
+    } else search();
+  }, [search, query, mediaType, page]);
+
+  useEffect(() => {
+    setMedias([]);
+    setPage(1);
+  }, [mediaType]);
+
+  const onCategoryChange = (selectedCategory) => setMediaType(selectedCategory);
+
+  const onQueryChange = (e) => {
+    const newQuery = e.target.value;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      setQuery(newQuery);
+    }, timeout);
+  };
   return (
     <>
-      <Toolbar />;
-      <Box>
-        <Stack>
-          {mediaTypes.map((item, index) => (
-            <Button>{item}</Button>
-          ))}
+      <Toolbar />
+      <Box sx={{ ...uiConfigs.style.mainContent }}>
+        <Stack spacing={2}>
+          <Stack
+            spacing={2}
+            direction="row"
+            justifyContent="center"
+            sx={{ width: "100%" }}
+          >
+            {mediaTypes.map((item, index) => (
+              <Button
+                size="large"
+                key={index}
+                variant={mediaTypes === item ? "contained" : "text"}
+                sx={{
+                  color:
+                    mediaType === item
+                      ? "primary.contrastText"
+                      : "text.primary",
+                }}
+                onClick={() => onCategoryChange(item)}
+              >
+                {item}
+              </Button>
+            ))}
+          </Stack>
+          <TextField
+            color="success"
+            placeholder="Search MoonFlix"
+            sx={{ width: "100%" }}
+            autoFocus
+            onChange={onQueryChange}
+          />
+          <MediaGrid medias={medias} mediaType={mediaType} />
+          {medias.length > 0 && (
+            <LoadingButton loading={onSearch} onClick={() => setPage(page + 1)}>
+              load more
+            </LoadingButton>
+          )}
         </Stack>
-        <TextField
-          color="success"
-          placeholder="Search MoonFlix"
-          sx={{ width: "100%" }}
-          autoFocus
-        />
-
-        {medias.length > 0 && <LoadingButton>load more</LoadingButton>}
       </Box>
     </>
   );
