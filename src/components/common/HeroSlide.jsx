@@ -61,31 +61,31 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
 
   return (
     <Box
-      sx={{
-        position: "relative",
-        color: "primary.contrastText",
-        "&::before": {
-          content: '""',
-          width: "100%",
-          height: "30%",
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          zIndex: 2,
-          pointerEvents: "none",
-          ...uiConfigs.style.gradientBgImage[theme.palette.mode],
-        },
-      }}
+    // sx={{
+    //   position: "relative",
+    //   color: "primary.contrastText",
+    //   "&::before": {
+    //     content: '""',
+    //     width: "100%",
+    //     height: "30%",
+    //     position: "absolute",
+    //     bottom: 0,
+    //     left: 0,
+    //     zIndex: 2,
+    //     pointerEvents: "none",
+    //     ...uiConfigs.style.gradientBgImage[theme.palette.mode],
+    //   },
+    // }}
     >
       <Swiper
         grabCursor={true}
         loop={true}
-        // modules={[Autoplay]}
+        modules={[Autoplay]}
         style={{ width: "100%", height: "max-content" }}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false
-        // }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
       >
         {movies.map((movie, index) => (
           <SwiperSlide key={index}>
@@ -111,9 +111,9 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                // ...uiConfigs.style.horizontalGradientBgImage[
-                //   theme.palette.mode
-                // ],
+                ...uiConfigs.style.horizontalGradientBgImage[
+                  theme.palette.mode
+                ],
               }}
             />
             <Box
@@ -123,7 +123,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                paddingX: { sm: "10px", md: "5rem", lg: "10rem" },
+                padding: { sm: "10px", md: "5rem", lg: "10rem" },
               }}
             >
               <Box
