@@ -1,12 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import {
-  Box,
-  Button,
-  Stack,
-  TextField,
-  Toolbar,
-  selectClasses,
-} from "@mui/material";
+import { Box, Button, Stack, TextField, Toolbar } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import uiConfigs from "../configs/ui.configs";
 import MediaGrid from "../components/common/MediaGrid";
@@ -24,7 +17,7 @@ const MediaSearch = () => {
   const [onSearch, setOnSearch] = useState(false);
   const [page, setPage] = useState(1);
 
-  console.log(medias);
+  // console.log(medias);
 
   const search = useCallback(async () => {
     setOnSearch(true);
