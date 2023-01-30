@@ -16,24 +16,34 @@ export const routesGen = {
   person: (id) => `/person/${id}`,
   favoriteList: "/favorites",
   reviewList: "/reviews",
-  passwordUpdate: "password-update"
+  passwordUpdate: "password-update",
 };
 
 const routes = [
   {
     index: true,
     element: <HomePage />,
-    state: "home"
+    state: "home",
   },
+  // {
+  //   path: "/movie",
+  //   element: <MediaList />,
+  //   state: "movie"
+  // },
+  // {
+  //   path: "/tv",
+  //   element: <HomePage />,
+  //   state: "tv"
+  // },
   {
     path: "/person/:personId",
     element: <PersonDetail />,
-    state: "person.detail"
+    state: "person.detail",
   },
   {
     path: "/search",
     element: <MediaSearch />,
-    state: "search"
+    state: "search",
   },
   {
     path: "/password-update",
@@ -42,7 +52,7 @@ const routes = [
         <PasswordUpdate />
       </ProtectedPage>
     ),
-    state: "password.update"
+    state: "password.update",
   },
   {
     path: "/favorites",
@@ -51,7 +61,7 @@ const routes = [
         <FavoriteList />
       </ProtectedPage>
     ),
-    state: "favorites"
+    state: "favorites",
   },
   {
     path: "/reviews",
@@ -60,16 +70,16 @@ const routes = [
         <ReviewList />
       </ProtectedPage>
     ),
-    state: "reviews"
+    state: "reviews",
   },
   {
     path: "/:mediaType",
-    element: <MediaList />
+    element: <MediaList />,
   },
   {
     path: "/:mediaType/:mediaId",
-    element: <MediaDetail />
-  }
+    element: <MediaDetail />,
+  },
 ];
 
 export default routes;
