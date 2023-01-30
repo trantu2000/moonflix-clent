@@ -19,6 +19,7 @@ import CastSlide from "../components/common/CastSlide";
 import MediaVideosSlide from "../components/common/MediaVideosSlide";
 import BackdropSlide from "../components/common/BackdropSlide";
 import PosterSlide from "../components/common/PosterSlide";
+import MediaReview from "../components/common/MediaReview";
 
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams();
@@ -218,6 +219,13 @@ const MediaDetail = () => {
           </Container>
         )}
         {/* media posters */}
+        {/* media reviews */}
+        <MediaReview
+          reviews={media.reviews}
+          media={media}
+          mediaType={mediaType}
+        />
+        {/* media reviews */}
       </Box>
     </>
   ) : null;
