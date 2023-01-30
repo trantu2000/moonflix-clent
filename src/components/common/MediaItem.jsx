@@ -58,6 +58,42 @@ const MediaItem = ({ media, mediaType }) => {
           color: "primary.contrastText",
         }}
       >
+        {/* movie or tv item */}
+        {mediaType !== "people" && (
+          <>
+            <Box
+              className="media-back-drop"
+              sx={{
+                opacity: { xs: 1, md: 0 },
+                transition: "all 0.3s ease",
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                backgroundImage:
+                  "linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))",
+              }}
+            />
+            <Button
+              className="media-play-btn"
+              variant="contained"
+              startIcon={<PlayArrowIcon />}
+              sx={{
+                display: { xs: "none", md: "flex" },
+                opacity: 0,
+                transition: "all 0.3s ease",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                "& .MuiButton-startIcon": { marginRight: "-4px" },
+              }}
+            />
+          </>
+        )}
+        {/* movie or tv item */}
+
         {/* people */}
         {mediaType === "people" && (
           <Box
