@@ -16,6 +16,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Container from "../components/common/Container";
 import CastSlide from "../components/common/CastSlide";
+import MediaVideosSlide from "../components/common/MediaVideosSlide";
 
 const MediaDetail = () => {
   const { mediaType, mediaId } = useParams();
@@ -191,6 +192,18 @@ const MediaDetail = () => {
           </Box>
         </Box>
         {/* media content */}
+
+        {/* media videos */}
+        <div ref={videoRef} style={{ paddingTop: "2rem" }}>
+          <Container header="Videos">
+            <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
+          </Container>
+        </div>
+        {/* media videos */}
+
+        {/* media backdrop */}
+
+        {/* media backdrop */}
       </Box>
     </>
   ) : null;
