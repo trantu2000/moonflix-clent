@@ -7,6 +7,9 @@ import routes from "./routes/routes";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import MainLayout from "./components/layout/MainLayout";
 import PageWrapper from "./components/common/PageWrapper";
 
