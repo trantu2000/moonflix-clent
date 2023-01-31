@@ -95,12 +95,10 @@ const MediaReview = ({ reviews, media, mediaType }) => {
           <>
             <Divider />
             <Stack direction="row" spacing={2}>
-              {/* <TextAvatar text={user?.displayName} /> */}
-              <TextAvatar text={"tu"} />
+              <TextAvatar text={user?.displayName} />
               <Stack spacing={2} flexGrow={1}>
                 <Typography variant="h6" fontWeight="700">
-                  {/* {user.displayName} */}
-                  Tran Thanh Tu
+                  {user.displayName}
                 </Typography>
                 <TextField
                   multiline
