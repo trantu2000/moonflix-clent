@@ -4,29 +4,30 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Stack,
   Toolbar,
   Typography,
 } from "@mui/material";
-import { Stack } from "@mui/system";
-import React, { useState } from "react";
-import Logo from "./Logo";
-import menuConfigs from "../../configs/menu.configs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { themeModes } from "../../configs/theme.configs";
-import ModeNightIcon from '@mui/icons-material/ModeNight';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import menuConfigs from "../../configs/menu.configs";
+import Logo from "./Logo";
 import uiConfigs from "../../configs/ui.configs";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
+
+import { themeModes } from "../../configs/theme.configs";
 import { setThemeMode } from "../../redux/features/themeModeSlice";
 
 const Sidebar = ({ open, toggleSidebar }) => {
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.user);
   const { appState } = useSelector((state) => state.appState);
-  //   const { user } = useSelector((state) => state.user);
-  const { user } = useState(true);
   const { themeMode } = useSelector((state) => state.themeMode);
+
   const sidebarWidth = uiConfigs.size.sidebarWith;
+
   const onSwitchTheme = () => {
     const theme =
       themeMode === themeModes.dark ? themeModes.light : themeModes.dark;
@@ -69,6 +70,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
             />
           </ListItemButton>
         ))}
+
         {user && (
           <>
             <Typography variant="h6" marginBottom="20px">
@@ -101,21 +103,28 @@ const Sidebar = ({ open, toggleSidebar }) => {
             ))}
           </>
         )}
-         <Typography variant="h6" marginBottom="20px">THEME</Typography>
+
+        <Typography variant="h6" marginBottom="20px">
+          THEME
+        </Typography>
         <ListItemButton onClick={onSwitchTheme}>
           <ListItemIcon>
-            {themeMode === themeModes.dark && <ModeNightIcon />}
-            {themeMode === themeModes.light && <WbSunnyIcon />}
+            {themeMode === themeModes.dark && <DarkModeOutlinedIcon />}
+            {themeMode === themeModes.light && <WbSunnyOutlinedIcon />}
           </ListItemIcon>
-          <ListItemText disableTypography primary={
-            <Typography textTransform="uppercase">
-              {themeMode === themeModes.dark ? "dark mode" : "light mode"}
-            </Typography>
-          } />
+          <ListItemText
+            disableTypography
+            primary={
+              <Typography textTransform="uppercase">
+                {themeMode === themeModes.dark ? "dark mode" : "light mode"}
+              </Typography>
+            }
+          />
         </ListItemButton>
       </List>
     </>
   );
+
   return (
     <Drawer
       open={open}
