@@ -25,16 +25,6 @@ const routes = [
     element: <HomePage />,
     state: "home",
   },
-  // {
-  //   path: "/movie",
-  //   element: <MediaList />,
-  //   state: "movie"
-  // },
-  // {
-  //   path: "/tv",
-  //   element: <HomePage />,
-  //   state: "tv"
-  // },
   {
     path: "/person/:personId",
     element: <PersonDetail />,
