@@ -6,7 +6,7 @@ export const themeModeSlice = createSlice({
     themeMode: "dark",
   },
   reducers: {
-    setTheme: (state, action) => {
+    setThemeMode: (state, action) => {
       state.themeMode = action.payload;
     },
   },
